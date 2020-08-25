@@ -1,3 +1,4 @@
+/**UNUSED */
 const wdio = require("webdriverio");
 const wd = require("wd");
 
