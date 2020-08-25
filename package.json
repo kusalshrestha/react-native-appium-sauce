@@ -8,6 +8,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint .",
     "test": "jest",
+    "prepare-test": "cd test/ && yarn && ..",
     "testAndroid": "cd test/ && npx wdio ./wdio.conf.js && .."
   },
   "dependencies": {
