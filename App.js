@@ -1,14 +1,21 @@
-import React from 'react'
-import { View, TouchableOpacity, Text, TextInput, StyleSheet } from 'react-native'
+import React from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   inputFieldContainer: {
-    paddingVertical: 16
+    paddingVertical: 16,
   },
   inputField: {
     width: 250,
@@ -16,56 +23,75 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     paddingHorizontal: 8,
-    borderRadius: 8
+    borderRadius: 8,
   },
   loginButton: {
     width: 200,
     height: 60,
     borderRadius: 30,
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#a4e320'
+    backgroundColor: '#a4e320',
   },
   statusText: {
     marginVertical: 50,
     marginBottom: -50,
-    justifyContent: 'flex-end'
-  }
-})
+    justifyContent: 'flex-end',
+  },
+  indicator: {
+    position: 'absolute',
+    elevation: 1,
+    right: 12,
+    top: 0,
+    bottom: 0,
+  },
+});
 
 const FieldType = {
   USERNAME: 'username',
-  PASSWORD: 'password'
-}
+  PASSWORD: 'password',
+};
 
 const validCredentials = {
   username: 'fleetpanda',
-  password: 'password'
-}
+  password: 'password',
+};
 
 class App extends React.Component {
   state = {
     status: '',
     username: '',
-    password: ''
-  }
+    password: '',
+    apiRequest: false,
+  };
 
-  login = () => {
-    const { username, password } = this.state
-    if (username === validCredentials.username && password === validCredentials.password) {
-      this.setState({ status: 'success'})
-      return
-    }
-    this.setState({ status: 'failure'})
-  }
+  mockRequest = async (username, password) => {
+    return new Promise((fulfill) => {
+      const isValid =
+        username === validCredentials.username &&
+        password === validCredentials.password;
+
+      setTimeout(() => {
+        return fulfill({success: isValid});
+      }, 2000);
+    });
+  };
+
+  login = async () => {
+    const {username, password} = this.state;
+    this.setState({apiRequest: true, status: ''});
+    const {success} = await this.mockRequest(username, password);
+    this.setState({status: success ? 'success' : 'failure', apiRequest: false});
+  };
 
   onchangeText = (text, fieldType) => {
     if (fieldType === FieldType.USERNAME) {
-      this.setState({ username: text })
-      return
+      this.setState({username: text});
+      return;
     }
-    this.setState({ password: text })
-  }
+    this.setState({password: text});
+  };
 
   render() {
     return (
@@ -74,7 +100,9 @@ class App extends React.Component {
         accessible={true}
         testID={'app-root'}
         accessibilityLabel={'app-root'}>
-        <Text testID="text" accessibilityLabel="text">FleetPanda</Text>
+        <Text testID="text" accessibilityLabel="text">
+          Facecover
+        </Text>
         <View style={styles.inputFieldContainer}>
           <TextInput
             style={styles.inputField}
@@ -99,11 +127,20 @@ class App extends React.Component {
           style={styles.loginButton}
           accessibilityLabel="login">
           <Text>Login</Text>
+          {this.state.apiRequest && (
+            <ActivityIndicator
+              style={styles.indicator}
+              color="white"
+              size="small"
+            />
+          )}
         </TouchableOpacity>
-        <Text style={styles.statusText} accessibilityLabel="loginStatus">{this.state.status}</Text>
+        <Text style={styles.statusText} accessibilityLabel="loginStatus">
+          {this.state.status}
+        </Text>
       </View>
-    )
+    );
   }
 }
 
-export default App
+export default App;
