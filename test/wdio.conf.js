@@ -49,7 +49,7 @@ exports.config = {
       platformName: 'Android',
       // platformVersion: '9',
       deviceName: 'Android Emulator',
-      app: '../android/app/release/app-release.apk',
+      app: '/Volumes/Backup/RatTest/REACT-NATIVE/react-native-appiumtest/android/app/release/app-release.apk', //'../android/app/release/app-release.apk',
       automationName: 'UiAutomator2',
     },
   ],
