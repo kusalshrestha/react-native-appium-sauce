@@ -40,9 +40,7 @@ exports.config = {
       'sauce',
       {
         sauceConnect: false,
-        sauceConnectOpts: {
-          browser: 'safari'
-        },
+        sauceConnectOpts: {},
       },
     ],
   ],
@@ -84,27 +82,16 @@ exports.config = {
   //
   capabilities: [
     {
-      // // appiumVersion: '1.18.1',
-      // platformName: 'Android',
-      // platformVersion: '9',
-      // deviceName: 'Android Emulator',
-      // browserName: '',
-      // deviceOrientation: 'portrait',
-      // build: 'Android Sample App Simulator tests',
-      // app: '/Volumes/Backup/RatTest/REACT-NATIVE/react-native-appiumtest/android/app/release/app-release.apk', //'sauce-storage:app-release.apk', // ,
-      // automationName: 'UiAutomator2',
-
       browserName: '',
       appiumVersion: '1.9.1',
       deviceName: 'Samsung Galaxy S8 GoogleAPI Emulator',
       deviceOrientation: 'portrait',
       platformVersion: '8.1',
       platformName: 'Android',
-      app: 'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk',//'https://github.com/appium/sample-code/blob/master/sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk?raw=true',
-      waitforTimeout: 300,
-      commandTimeout: 300,
-      name: 'Android UI Automation',
-      build: 'Sample WDIO5 Appium Tests',
+      app:
+        'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk?raw=true',
+      name: 'App.spec.js',
+      build: 'Auth Test',
     },
   ],
   //
