@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 exports.config = {
   //
   // ====================
@@ -6,8 +9,41 @@ exports.config = {
   //
   // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
   // on a remote machine).
-  runner: 'local',
+  // runner: 'local',
+  //
+  // Set a base URL in order to shorten url command calls. If your `url` parameter starts
+  // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
+  // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
+  // gets prepended directly.
+  // baseUrl: process.env.APPIUM_HOST, //'http://localhost',
+  baseUrl: '',
+  host: process.env.APPIUM_HOST,
+  port: Number(process.env.APPIUM_PORT),
 
+  user: process.env.SAUCE_USERNAME,
+  key: process.env.SAUCE_ACCESS_KEY,
+  region: 'us',
+
+  appium: {
+    command: 'appium',
+    args: {},
+  },
+  path: '/wd/hub',
+  //
+  // Test runner services
+  // Services take over a specific job you don't want to take care of. They enhance
+  // your test setup with almost no effort. Unlike plugins, they don't add new
+  // commands. Instead, they hook themselves up into the test process.
+  // services: ['appium'],
+  services: [
+    [
+      'sauce',
+      {
+        sauceConnect: false,
+        sauceConnectOpts: {},
+      },
+    ],
+  ],
   //
   // ==================
   // Specify Test Files
@@ -46,11 +82,16 @@ exports.config = {
   //
   capabilities: [
     {
+      browserName: '',
+      appiumVersion: '1.9.1',
+      deviceName: 'Samsung Galaxy S8 GoogleAPI Emulator',
+      deviceOrientation: 'portrait',
+      platformVersion: '8.1',
       platformName: 'Android',
-      // platformVersion: '9',
-      deviceName: 'Android Emulator',
-      app: '/Volumes/Backup/RatTest/REACT-NATIVE/react-native-appiumtest/android/app/release/app-release.apk', //'../android/app/release/app-release.apk',
-      automationName: 'UiAutomator2',
+      app:
+        'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk?raw=true',
+      name: 'App.spec.js',
+      build: 'Auth Test',
     },
   ],
   //
@@ -80,12 +121,6 @@ exports.config = {
   // bail (default is 0 - don't bail, run all tests).
   bail: 0,
   //
-  // Set a base URL in order to shorten url command calls. If your `url` parameter starts
-  // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
-  // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
-  // gets prepended directly.
-  // baseUrl: 'http://localhost',
-  //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
   //
@@ -95,19 +130,6 @@ exports.config = {
   //
   // Default request retries count
   connectionRetryCount: 3,
-  //
-  // Test runner services
-  // Services take over a specific job you don't want to take care of. They enhance
-  // your test setup with almost no effort. Unlike plugins, they don't add new
-  // commands. Instead, they hook themselves up into the test process.
-  services: ['appium'],
-
-  appium: {
-    command: 'appium',
-    args: {},
-  },
-  port: 4723,
-  path: '/wd/hub',
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber

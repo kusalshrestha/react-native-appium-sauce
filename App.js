@@ -66,6 +66,10 @@ class App extends React.Component {
     apiRequest: false,
   };
 
+  componentDidMount() {
+    console.log('====', process)
+  }
+
   mockRequest = async (username, password) => {
     return new Promise((fulfill) => {
       const isValid =

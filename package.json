@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "test": "jest",
     "prepare-test": "cd test/ && yarn && ..",
-    "testAndroid": "cd test/ && npx wdio ./wdio.conf.js && .."
+    "teste2e:android": "cd test/ && npx wdio ./wdio.conf.js && .."
   },
   "dependencies": {
     "react": "16.13.1",

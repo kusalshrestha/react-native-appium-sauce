@@ -16,9 +16,13 @@
     "@wdio/spec-reporter": "^6.4.0",
     "@wdio/sync": "^6.4.0",
     "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
     "webdriverio": "^6.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/runtime": "^7.11.2",
+    "@wdio/sauce-service": "^6.4.2",
     "npm-bundle": "^3.0.3"
   },
   "bundledDependencies": [
