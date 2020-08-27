@@ -1,6 +1,6 @@
-# react-native-appiumtest
+# react-native-appium-sauce
 
-A test project for testing the app using `Appium`.
+A test project for testing the app using `Appium` with `saucelabs` service.
 
 
 ## Run on local server
