@@ -16,36 +16,36 @@ exports.config = {
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
   // baseUrl: process.env.APPIUM_HOST, //'http://localhost',
-  baseUrl: 'http://saucelabs.github.io',
+  baseUrl: '',
+  host: process.env.APPIUM_HOST,
+  port: Number(process.env.APPIUM_PORT),
+
   user: process.env.SAUCE_USERNAME,
   key: process.env.SAUCE_ACCESS_KEY,
   region: 'us',
-  sauceConnect: false,
-  services: ['sauce'],
 
-  // appium: {
-  //   command: 'appium',
-  //   args: {},
-  // },
-  // port: Number(process.env.APPIUM_PORT),
-  // path: '/wd/hub',
+  appium: {
+    command: 'appium',
+    args: {},
+  },
+  path: '/wd/hub',
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
   // services: ['appium'],
-  // services: [
-  //   [
-  //     'sauce',
-  //     {
-  //       sauceConnect: false,
-  //       sauceConnectOpts: {
-  //         // ...
-  //       },
-  //     },
-  //   ],
-  // ],
+  services: [
+    [
+      'sauce',
+      {
+        sauceConnect: false,
+        sauceConnectOpts: {
+          browser: 'safari'
+        },
+      },
+    ],
+  ],
   //
   // ==================
   // Specify Test Files
@@ -96,14 +96,14 @@ exports.config = {
 
       browserName: '',
       appiumVersion: '1.9.1',
-      deviceName: 'Samsung Galaxy Tab A 10 GoogleAPI Emulator',
+      deviceName: 'Samsung Galaxy S8 GoogleAPI Emulator',
       deviceOrientation: 'portrait',
       platformVersion: '8.1',
       platformName: 'Android',
       app: 'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk',//'https://github.com/appium/sample-code/blob/master/sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk?raw=true',
       waitforTimeout: 300,
       commandTimeout: 300,
-      name: 'App.spec.js',
+      name: 'Android UI Automation',
       build: 'Sample WDIO5 Appium Tests',
     },
   ],
