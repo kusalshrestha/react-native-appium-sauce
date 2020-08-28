@@ -2,9 +2,8 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-console.log("=====", process.env)
 const wdio = require('webdriverio');
-const wd = require('wd');
+// const wd = require('wd');
 
 const assert = require('assert');
 

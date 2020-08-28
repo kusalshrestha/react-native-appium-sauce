@@ -66,9 +66,7 @@ class App extends React.Component {
     apiRequest: false,
   };
 
-  componentDidMount() {
-    console.log('====', process)
-  }
+  componentDidMount() {}
 
   mockRequest = async (username, password) => {
     return new Promise((fulfill) => {
