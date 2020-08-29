@@ -49,7 +49,7 @@ matrix:
       deploy:
         - provider: releases
           api_key: $GITHUB_TOKEN
-          file: android/app/build/outputs/apk/release/*
+          file: android/app/build/outputs/apk/release/app-release.apk
           file_glob: true
           skip_cleanup: true
           overwrite: true
