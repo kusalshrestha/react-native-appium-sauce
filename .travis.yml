@@ -53,8 +53,8 @@ matrix:
           file_glob: true
           skip_cleanup: true
           overwrite: true
-          name: "$APP_VERSION"
-          tag_name: "$APP_VERSION"
-          body: "$APP_CHANGELOG"
+          name: "1.0.0"
+          tag_name: "1.0.0"
+          body: "ui automation"
           on:
             branch: master
