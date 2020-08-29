@@ -25,6 +25,8 @@ matrix:
           - tools
           - build-tools-29.0.2
           - android-29
+        licenses:
+          - android-sdk-license-.+
       before_install:
         - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
         - sudo apt-get install -y nodejs
