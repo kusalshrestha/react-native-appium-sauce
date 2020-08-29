@@ -89,7 +89,8 @@ exports.config = {
       platformVersion: '8.1',
       platformName: 'Android',
       app:
-        'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk?raw=true',
+        'https://github.com/kusalshrestha/react-native-appium-sauce/releases/download/1.0.0/app-release.apk',
+        //'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk?raw=true',
       name: 'App.spec.js',
       build: 'Auth Test',
     },
