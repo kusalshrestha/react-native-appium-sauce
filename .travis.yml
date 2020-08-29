@@ -26,8 +26,23 @@ matrix:
           - build-tools-29.0.2
           - android-29
       before_install:
-        - chmod +x gradlew
+        - cd android && chmod +x gradlew && ..
         - openssl aes-256-cbc -K "encrypted_cec398169802_key" -iv "encrypted_cec398169802_iv" -in my-release-key.keystore.enc -out my-release-key.keystore -d
         - tar -xvf my-release-key.keystore --overwrite
       script:
-        - ./gradlew assembleDebug
+        - cd android && ./gradlew assembleDebug && ..
+      before_deploy:
+        - export APP_VERSION=$(./gradlew :app:printVersionName)
+        - export APP_CHANGELOG=$(cat app/src/main/play/release-notes/en-US/default.txt)
+      deploy:
+        - provider: releases
+          api_key: "$GITHUB_TOKEN"
+          file: app/build/outputs/apk/release/*
+          file_glob: true
+          skip_cleanup: true
+          overwrite: true
+          name: "$APP_VERSION"
+          tag_name: "$APP_VERSION"
+          body: "$APP_CHANGELOG"
+          on:
+            branch: master
