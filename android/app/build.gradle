@@ -150,14 +150,7 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        release {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword MYAPP_RELEASE_STORE_PASSWORD
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            }
-        }
+        release
     }
     buildTypes {
         debug {
@@ -185,6 +178,14 @@ android {
             }
 
         }
+    }
+
+    def isRunningOnTravis = System.getenv("CI") == "true"
+    if (isRunningOnTravis) {
+        signingConfigs.release.storeFile = file("../my-release-key.keystore")
+        signingConfigs.release.storePassword = System.getenv("MYAPP_RELEASE_STORE_PASSWORD")
+        signingConfigs.release.keyAlias = System.getenv("MYAPP_RELEASE_KEY_ALIAS")
+        signingConfigs.release.keyPassword = System.getenv("MYAPP_RELEASE_KEY_PASSWORD")
     }
 }
 
