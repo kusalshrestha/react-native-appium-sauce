@@ -53,7 +53,7 @@ exports.config = {
   // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
-  specs: ['./test/specs/**/*.js'],
+  specs: ['./__tests__/specs/**/*.js'],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -90,7 +90,7 @@ exports.config = {
       platformName: 'Android',
       app:
         'https://github.com/kusalshrestha/react-native-appium-sauce/releases/download/1.0.0/app-release.apk',
-        //'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk?raw=true',
+      //'https://github.com/kusalshrestha/react-native-appiumtest/blob/master/android/app/release/app-release.apk?raw=true',
       name: 'App.spec.js',
       build: 'Auth Test',
     },
