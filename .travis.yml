@@ -10,7 +10,6 @@ matrix:
         - yarn test
         - yarn lint
         - nodejs -version
-        - sudo yarn prepare-test
         - yarn teste2e:android
 
     # - language: android
