@@ -1,8 +1,8 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-String user = System.getProperty("user.name");
-console.log('=====', user)
+// const user = System.getProperty("user.name");
+console.log('=====', process)
 
 exports.config = {
   //
