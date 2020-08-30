@@ -1,7 +1,8 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-console.log('=====', process.env.APPIUM_HOST, process.env)
+String user = System.getProperty("user.name");
+console.log('=====', user)
 
 exports.config = {
   //
