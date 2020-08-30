@@ -7,60 +7,57 @@ matrix:
         directories:
           - node_modules
       script: 
-        - yarn
         - yarn test
         - yarn lint
-        - yarn teste2e:android
 
-    # - language: android
-    #   os: linux
-    #   jdk: oraclejdk8
-    #   sudo: required
-    #   cache:
-    #     directories:
-    #       - $HOME/.gradle/caches/
-    #       - $HOME/.gradle/wrapper/
-    #       - $HOME/.android/build-cache
-    #   android:
-    #     components:
-    #       - platform-tools
-    #       - tools
-    #       - build-tools-29.0.2
-    #       - android-29
-    #     licenses:
-    #       - android-sdk-license-.+
-    #   before_install:
-    #     - curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    #     - sudo apt-get install -y nodejs
-    #     - nodejs --version
-    #     - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    #     - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    #     - sudo apt-get update && sudo apt-get install yarn
-    #     - cd android/app
-    #     - openssl aes-256-cbc -K $encrypted_cec398169802_key -iv $encrypted_cec398169802_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
-    #     - yes | sdkmanager "platforms;android-28"
-    #     - cd ..
-    #   install:
-    #     # - yarn install
-    #     - npm install
-    #   script:
-    #     - sudo chmod +x gradlew && ./gradlew assembleRelease && cd ..
-    #   before_deploy:
-    #     - export APP_VERSION=$(cd android && ./gradlew :app:printVersionName)
-    #     - export APP_CHANGELOG=$(cat android/app/src/main/play/release-notes/en-US/default.txt)
-    #   deploy:
-    #     - provider: releases
-    #       api_key: $GITHUB_TOKEN
-    #       file: android/app/build/outputs/apk/release/app-release.apk
-    #       file_glob: true
-    #       skip_cleanup: true
-    #       overwrite: true
-    #       name: "1.0.0"
-    #       tag_name: "1.0.0"
-    #       body: "ui automation"
-    #       on:
-    #         repo: kusalshrestha/react-native-appium-sauce
-    #         branch: master
-    #   after_deploy:
-    #     - yarn prepare-test
-    #     - yarn teste2e:android
+    - language: android
+      os: linux
+      jdk: oraclejdk8
+      sudo: required
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+          - $HOME/.gradle/wrapper/
+          - $HOME/.android/build-cache
+      android:
+        components:
+          - platform-tools
+          - tools
+          - build-tools-29.0.2
+          - android-29
+        licenses:
+          - android-sdk-license-.+
+      before_install:
+        - curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+        - sudo apt-get install -y nodejs
+        - nodejs --version
+        - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        - sudo apt-get update && sudo apt-get install yarn
+        - cd android/app
+        - openssl aes-256-cbc -K $encrypted_cec398169802_key -iv $encrypted_cec398169802_iv -in my-release-key.keystore.enc -out my-release-key.keystore -d
+        - yes | sdkmanager "platforms;android-28"
+        - cd ..
+      install:
+        - npm install
+      script:
+        - sudo chmod +x gradlew && ./gradlew assembleRelease && cd ..
+      before_deploy:
+        - export APP_VERSION=$(cd android && ./gradlew :app:printVersionName)
+        - export APP_CHANGELOG=$(cat android/app/src/main/play/release-notes/en-US/default.txt)
+      deploy:
+        - provider: releases
+          api_key: $GITHUB_TOKEN
+          file: android/app/build/outputs/apk/release/app-release.apk
+          file_glob: true
+          skip_cleanup: true
+          overwrite: true
+          name: "1.0.0"
+          tag_name: "1.0.0"
+          body: "ui automation"
+          on:
+            repo: kusalshrestha/react-native-appium-sauce
+            branch: master
+      after_deploy:
+        - yarn
+        - yarn teste2e:android
