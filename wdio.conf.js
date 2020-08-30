@@ -1,6 +1,8 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+console.log('=====', process.env.APPIUM_HOST, process.env)
+
 exports.config = {
   //
   // ====================
