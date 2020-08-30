@@ -7,9 +7,9 @@ matrix:
         directories:
           - node_modules
       script: 
+        - yarn
         - yarn test
         - yarn lint
-        - nodejs -version
         - yarn teste2e:android
 
     # - language: android
